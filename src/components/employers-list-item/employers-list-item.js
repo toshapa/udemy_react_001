@@ -66,9 +66,7 @@ class EmployersListItem extends Component {
                 <i className= 'fas fa-star like' ></i>
             </div>
         </li>
-    )
-    }
-    
+    )}
 }
 
 export default EmployersListItem;
