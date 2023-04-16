@@ -15,3 +15,17 @@
     width: 350px;
     margin-right: 20px;
 }
+
+.wrapInput {
+    position: relative;
+}
+
+.fillthis {
+    /* display: flex; */
+    position: absolute;
+    color: red;
+}
+
+.redBorder {
+    border: solid 4px red;
+}

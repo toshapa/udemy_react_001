@@ -1,17 +1,20 @@
-import { Component } from 'react';
+import { Component, useState } from 'react';
 
 import './employees-add-form.css'
 
 class EmployeesAddForm extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            salary: ''
+            salary: '',
+            isActive: false
         }
         this.onValueChange = this.onValueChange.bind(this)
     }
 
+   
     onValueChange(event) {
         
         this.setState({
@@ -25,11 +28,18 @@ class EmployeesAddForm extends Component {
 
     submit = (event) => {
         event.preventDefault()
-        this.props.onAdd(this.state.name, this.state.salary)
-        this.setState({
+        if (this.state.name.length < 3 && !this.state.salary) 
+        {            
+            this.setState( {isActive: !this.state.isActive} )
+        } else {
+            this.props.onAdd(this.state.name, this.state.salary)
+            this.setState({
             name: '',
             salary: ''
         })
+        } 
+
+        
         
     }
 
@@ -43,20 +53,35 @@ class EmployeesAddForm extends Component {
                 <form
                     onSubmit={this.submit}
                     className="add-form d-flex">
-                    <input type="text"
-                        required
-                        className="form-control new-post-label"
+                    <div className='wrapInput'>
+                        <input type="text"
+                        // required
+                        className = {this.state.isActive ? 'form-control new-post-label redBorder' : 'form-control new-post-label'}
                         placeholder="How It`s Employees Name?"
                         name = "name"
                         value={name}
-                        onChange = {this.onValueChange} />
+                        onChange = {this.onValueChange} 
+                        />
+                        <p 
+                        className = 'fillthis'
+                        style = {{display: this.state.isActive ? 'flex' : 'none'}}
+                        >Fill this section</p>
+                    </div>
+                    
+                    <div className="wrapInput">
                     <input type="number"
-                        required
-                        className="form-control new-post-label"
+                        // required
+                        className = {this.state.isActive ? 'form-control new-post-label redBorder' : 'form-control new-post-label'}
                         placeholder="Salary in $?"
                         name = 'salary'
                         value={salary}
                         onChange={this.onValueChange} />
+                        <p 
+                        className = 'fillthis'
+                        style = {{display: this.state.isActive ? 'flex' : 'none'}}
+                        >Fill this section</p>
+                    </div>
+                    
                     <button type="submit"
                             className="btn btn-outline-light"
                             // onClick = {this.addNewEmployees}
