@@ -25,7 +25,6 @@ class App extends Component {
         this.onToggleIncrease = this.onToggleIncrease.bind(this)
         this.onToggleRise = this.onToggleRise.bind(this)
     }
-
     addItem = (name, salary) => {
         const newItem = {
             name,
@@ -46,7 +45,7 @@ class App extends Component {
 
     deleteItem = (id) => {
         this.setState(({dataEmployees}) => {
-            
+            console.log(id)
             return {
                 dataEmployees : dataEmployees.filter(item => item.id !== id)
             }
@@ -107,6 +106,16 @@ class App extends Component {
     onFilterChoice = (filter) => {
         this.setState({filter})
     }
+    
+    onChangeSalary = (id, salary) => {
+        this.setState(
+            {
+                salary: salary,
+                id: id
+            }
+        )
+        console.log(this)
+    }
 
     render() {
         
@@ -115,7 +124,6 @@ class App extends Component {
         const prizeEmployees = this.state.dataEmployees.filter(item => item.increase).length
 
         const visibleDataEmployees = this.filterPost(this.searchEmp(dataEmployees, temp), filter);
-        
         
         return (
             <div className="app">
@@ -128,7 +136,6 @@ class App extends Component {
                     <SearchPanel onUpdateSearch = {this.onUpdateSearch}/>
                     <AppFilter 
                     filter = {filter} 
-                    
                     onFilterChoice = {this.onFilterChoice}/>
                 </div>
                 <EmployersList 
@@ -136,6 +143,7 @@ class App extends Component {
                     onDelete = {this.deleteItem}
                     onToggleIncrease = {this.onToggleIncrease}
                     onToggleRise = {this.onToggleRise}
+                    onChangeSalary = {this.onChangeSalary}
                 />
                 <EmployeesAddForm
                 data = {this.state.dataEmployees}

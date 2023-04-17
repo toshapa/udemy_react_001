@@ -1,22 +1,12 @@
+
 import './employers-list-item.css';
 
 const EmployersListItem = (props) => {
 
-    // onIncrease() {
-    //     this.setState(({increase}) => ({
-    //         increase: !increase
-    //     }))
-    // }
-
-    // upgradeUp() {
-    //     this.setState(({upgrade}) => ({
-    //         upgrade: !upgrade
-    //     }))
-    // }
-
-
     
-    const {name, salary, onDelete ,onToggleIncrease, onToggleRise, increase, rise} = props;
+    
+    const {name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise, onChangeSalary} = props;
+    
     let classNames = "list-group-item d-flex justify-content-between"
 
     if (increase) {
@@ -36,11 +26,12 @@ const EmployersListItem = (props) => {
                     {name}
             </span>
 
-            <input type="text" className="list-group-item-input" defaultValue={salary + '$'}/>
+            <input type="text" className="list-group-item-input" defaultValue={salary + '$'}  onChange={(event) => onChangeSalary(+event.target.value.replace("\$", ""))}/>
             <div className='d-flex justify-content-center align-items-center'>
                 <button type="button"
                     className="btn-cookie btn-sm"
                     onClick = {onToggleIncrease}>
+
                     <i className="fas fa-cookie"></i>
                 </button>
 
