@@ -39,8 +39,7 @@ const EmployersListItem = (props) => {
                         className="btn-trash btn-sm"
                         onClick = {onDelete}
                         >
-                        <i className="fas fa-trash"
-                        ></i>
+                        <i className="fas fa-trash"></i>
                 </button>
                 <i className= 'fas fa-star' ></i>
             </div>

@@ -45,7 +45,7 @@ class App extends Component {
 
     deleteItem = (id) => {
         this.setState(({dataEmployees}) => {
-            console.log(id)
+            
             return {
                 dataEmployees : dataEmployees.filter(item => item.id !== id)
             }
@@ -108,13 +108,13 @@ class App extends Component {
     }
     
     onChangeSalary = (id, salary) => {
-        this.setState(
+        return this.setState(
             {
-                salary: salary,
-                id: id
+                id: id,
+                salary: salary
+
             }
         )
-        console.log(this)
     }
 
     render() {

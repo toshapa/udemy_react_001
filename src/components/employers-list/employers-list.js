@@ -8,7 +8,6 @@ const EmployersList = ({data, onDelete, onToggleIncrease, onToggleRise, onChange
     const elements = data.map(item => {
         
         const {id, ...itemProps} = item
-        
         return (
             <EmployersListItem
             key = {id} 
